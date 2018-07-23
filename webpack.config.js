@@ -1,8 +1,8 @@
 require('babel-polyfill');
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
-// TODO: add autoprefixer
+const autoprefixer = require('autoprefixer');
+const postcssPresetEnv = require('postcss-preset-env');
 
 module.exports = {
   devtool: 'source-map',
@@ -38,7 +38,21 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           process.env.NODE_ENV !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader',
+          { loader: 'css-loader', options: { importLoaders: 1 } },
+          {
+            loader: "postcss-loader",
+            options: {
+              ident: 'postcss',
+              autoprefixer: {
+                browsers: ["last 2 versions"]
+              },
+              plugins: () => [
+                postcssPresetEnv(),
+                require('postcss-import')(),
+                autoprefixer
+              ]
+            },
+          },
           'sass-loader'
         ]
       }
