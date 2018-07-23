@@ -45,13 +45,10 @@ module.exports = {
             loader: "postcss-loader",
             options: {
               ident: 'postcss',
-              autoprefixer: {
-                browsers: ["last 2 versions"]
-              },
               plugins: () => [
                 postcssPresetEnv(),
                 // require('postcss-import')(),
-                autoprefixer()
+                autoprefixer('last 2 versions')
               ]
             },
           },
