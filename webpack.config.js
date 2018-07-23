@@ -4,7 +4,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const autoprefixer = require('autoprefixer');
 const postcssPresetEnv = require('postcss-preset-env');
 
-const devMode = process.env.NODE_ENV !== 'production';
+const devMode = false;
+// const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   devtool: 'source-map',
@@ -39,7 +40,7 @@ module.exports = {
         ],
         exclude: /node_modules/,
         use: [
-          process.env.NODE_ENV !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader,
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           { loader: 'css-loader', options: { importLoaders: 2 } },
           {
             loader: "postcss-loader",
@@ -65,12 +66,26 @@ module.exports = {
     modules: ['node_modules', path.join(__dirname, '../node_modules')],
     extensions: ['.jsx', '.wasm', '.mjs', '.js', '.json']
   },
+  // optimization: {
+  //   runtimeChunk: {
+  //     name: "index"
+  //   },
+  //   // splitChunks: {
+  //   //   cacheGroups: {
+  //   //     commons: {
+  //   //       test: /[\\/]node_modules[\\/]/,
+  //   //       name: "vendor",
+  //   //       chunks: "all"
+  //   //     }
+  //   //   }
+  //   // }
+  // },
+  
   plugins: [
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: devMode ? '[name].css' : '[name].[hash].css',
-      chunkFilename: "[id].css"
+      filename: 'index.css',
     })
   ]
 };
