@@ -1,6 +1,13 @@
-import ReactDOM from 'react-dom';
-import Index from '../pages/index';
+import dva from 'dva';
+import models from '../models';
+import router from './router';
 
-const app = document.getElementById('app');
+const app = dva();
 
-ReactDOM.render(<Index />, app);
+models.forEach((model) => {
+  app.model(model);
+});
+
+app.router(router);
+
+app.start('#app');

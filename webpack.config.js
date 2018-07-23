@@ -15,7 +15,8 @@ module.exports = {
     port: '9420',
     // compress: true,
   },
-  mode: 'production',
+  mode: 'development',
+  // mode: 'production',
   entry: './src/entry',
   output: {
     filename: 'index.js',
@@ -36,9 +37,10 @@ module.exports = {
       {
         test: /\.(c|sc|sa)ss$/,
         include: [
-          path.resolve(__dirname, 'src')
+          path.resolve(__dirname, 'src'),
+          path.resolve(__dirname, 'node_modules')
         ],
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
         use: [
           devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           { loader: 'css-loader', options: { importLoaders: 2 } },
