@@ -11,6 +11,7 @@
     "sourceType": "module"
   },
   "globals": {
+    "React": true
   },
   "rules": {
     "import/no-unresolved": 0,
