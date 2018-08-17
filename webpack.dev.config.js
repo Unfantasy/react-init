@@ -22,8 +22,7 @@ module.exports = {
     port: '9420',
     // compress: true,
   },
-  // mode: 'development',
-  mode: 'production',
+  mode: 'development',
   entry: './src/entry',
   output: {
     filename: 'index.js',

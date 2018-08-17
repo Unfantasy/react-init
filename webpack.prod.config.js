@@ -23,7 +23,6 @@ module.exports = {
     port: '9420',
     // compress: true,
   },
-  // mode: 'development',
   mode: 'production',
   entry: './src/entry',
   output: {
@@ -88,26 +87,12 @@ module.exports = {
     extensions: ['.jsx', '.wasm', '.mjs', '.js', '.json']
   },
   // optimization: {
-  //   runtimeChunk: {
-  //     name: "index"
-  //   },
-  //   // splitChunks: {
-  //   //   cacheGroups: {
-  //   //     commons: {
-  //   //       test: /[\\/]node_modules[\\/]/,
-  //   //       name: "vendor",
-  //   //       chunks: "all"
-  //   //     }
-  //   //   }
-  //   // }
+  //   minimizer: [
+  //     new UglifyJsPlugin({
+  //       parallel: true,
+  //     })
+  //   ]
   // },
-  optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        parallel: true,
-      })
-    ]
-  },
   
   plugins: [
     new MiniCssExtractPlugin({
